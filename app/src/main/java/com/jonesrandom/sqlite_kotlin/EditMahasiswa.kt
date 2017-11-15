@@ -35,23 +35,23 @@ class EditMahasiswa : AppCompatActivity() {
             val id = spinnerSemesterEdit.selectedItemId
 
             if (nama.isEmpty()) {
-                inNamaEdit.error = "Masukan Nama Mahasiswa"
+                inNamaEdit.error = "Masukan nama Mahasiswa"
                 return@setOnClickListener
             }
 
             if (nim.isEmpty()) {
-                inNimEdit.error = "Masukan Nim Mahasiswa"
+                inNimEdit.error = "Masukan nim Mahasiswa"
                 return@setOnClickListener
             }
 
             if (id < 1) {
-                Toast.makeText(this, "Pilih Semester", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Pilih semster", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            data.Nama = nama
-            data.Nim = nim.toInt()
-            data.Semester = semester
+            data.nama = nama
+            data.nim = nim.toInt()
+            data.semster = semester
 
             val stat = dbAdapter.updateData(data)
 
@@ -73,12 +73,12 @@ class EditMahasiswa : AppCompatActivity() {
         val bind = intent.extras
         data = bind.getParcelable("DATA")
 
-        etNamaEdit.setText(data.Nama)
-        etNimEdit.setText(data.Nim.toString())
+        etNamaEdit.setText(data.nama)
+        etNimEdit.setText(data.nim.toString())
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, getSemester())
         spinnerSemesterEdit.adapter = adapter
-        spinnerSemesterEdit.setSelection(adapter.getPosition(data.Semester))
+        spinnerSemesterEdit.setSelection(adapter.getPosition(data.semster))
 
     }
 

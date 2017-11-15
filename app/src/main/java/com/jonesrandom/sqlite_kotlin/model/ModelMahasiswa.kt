@@ -9,7 +9,7 @@ import android.os.Parcelable
  * #JanganLupaBahagia
  *
  */
-class ModelMahasiswa(var id: Int, var Nama: String, var Nim: Int, var Semester: String) : Parcelable {
+class ModelMahasiswa(var id: Int, var nama: String, var nim: Int, var semster: String) : Parcelable {
 
 
     constructor(parcel: Parcel) : this(
@@ -22,9 +22,9 @@ class ModelMahasiswa(var id: Int, var Nama: String, var Nim: Int, var Semester: 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
-        parcel.writeString(Nama)
-        parcel.writeInt(Nim)
-        parcel.writeString(Semester)
+        parcel.writeString(nama)
+        parcel.writeInt(nim)
+        parcel.writeString(semster)
     }
 
     override fun describeContents(): Int {

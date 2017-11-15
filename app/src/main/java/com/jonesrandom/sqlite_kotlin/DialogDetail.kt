@@ -56,9 +56,9 @@ class DialogDetail : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dialogNama.text = dataMahasiswa.Nama.toUpperCase()
-        dialogNim.text = dataMahasiswa.Nim.toString()
-        dialogSemester.text = dataMahasiswa.Semester
+        dialogNama.text = dataMahasiswa.nama.toUpperCase()
+        dialogNim.text = dataMahasiswa.nim.toString()
+        dialogSemester.text = dataMahasiswa.semster
 
         toolbarDialog.inflateMenu(R.menu.dialog_menu)
         toolbarDialog.setOnMenuItemClickListener {
@@ -72,7 +72,7 @@ class DialogDetail : BottomSheetDialogFragment() {
                 R.id.dialogHapus -> {
                     val build = context?.let { it1 -> AlertDialog.Builder(it1) }
                     build?.setTitle("Hapus Data")
-                    build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.Nama.toUpperCase()}")
+                    build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.nama.toUpperCase()}")
                     build?.setPositiveButton("HAPUS", { dialogInterface, i ->
 
                         val stas = dbAdapter.deleteData(dataMahasiswa.id)

@@ -36,24 +36,24 @@ class MainActivity : AppCompatActivity() {
             val id = spinnerSemester.selectedItemId
 
             if (nama.isEmpty()) {
-                inNama.error = "Masukan Nama Mahasiswa"
+                inNama.error = "Masukan nama Mahasiswa"
                 return@setOnClickListener
             }
 
             if (nim.isEmpty()) {
-                inNim.error = "Masukan Nim Mahasiswa"
+                inNim.error = "Masukan nim Mahasiswa"
                 return@setOnClickListener
             }
 
             if (id < 1) {
-                Toast.makeText(this, "Pilih Semester", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Pilih semster", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             val data = ModelMahasiswa()
-            data.Nama = nama
-            data.Nim = nim.toInt()
-            data.Semester = semester
+            data.nama = nama
+            data.nim = nim.toInt()
+            data.semster = semester
 
             val stat = dbAdapter.insertData(data)
 
