@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.jonesrandom.sqlite_kotlin.database.DatabaseHelper
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 import kotlinx.android.synthetic.main.dialog_detail_mahasiswa.*
@@ -80,6 +81,10 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                         if (stas != 0) {
                             dialog.dismiss()
                             listeners.dialogDeleteCallback(dataMahasiswa)
+
+                            Toast.makeText(activity , "Berhasil Menghapus Data" , Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(activity , "Gagal Menghapus Data" , Toast.LENGTH_SHORT).show()
                         }
 
                     })
