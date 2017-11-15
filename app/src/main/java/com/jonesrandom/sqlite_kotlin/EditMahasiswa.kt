@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditMahasiswa : AppCompatActivity() {
 
-    var data = ModelMahasiswa()
+    var dataMahasiswa = ModelMahasiswa()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +49,15 @@ class EditMahasiswa : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            data.nama = nama
-            data.nim = nim.toInt()
-            data.semster = semester
+            dataMahasiswa.nama = nama
+            dataMahasiswa.nim = nim.toInt()
+            dataMahasiswa.semster = semester
 
-            val stat = dbAdapter.updateData(data)
+            val stat = dbAdapter.updateData(dataMahasiswa)
 
             if (stat > 0) {
                 val bind = Bundle()
-                bind.putParcelable("DATA", data)
+                bind.putParcelable("DATA", dataMahasiswa)
 
                 val intent = Intent()
                 intent.putExtras(bind)
@@ -69,16 +69,16 @@ class EditMahasiswa : AppCompatActivity() {
         toolbarEdit.title = "Update Data Mahasiswa"
     }
 
-    fun bindView() {
+    private fun bindView() {
         val bind = intent.extras
-        data = bind.getParcelable("DATA")
+        dataMahasiswa = bind.getParcelable("DATA")
 
-        etNamaEdit.setText(data.nama)
-        etNimEdit.setText(data.nim.toString())
+        etNamaEdit.setText(dataMahasiswa.nama)
+        etNimEdit.setText(dataMahasiswa.nim.toString())
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, getSemester())
         spinnerSemesterEdit.adapter = adapter
-        spinnerSemesterEdit.setSelection(adapter.getPosition(data.semster))
+        spinnerSemesterEdit.setSelection(adapter.getPosition(dataMahasiswa.semster))
 
     }
 
