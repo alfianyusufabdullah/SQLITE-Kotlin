@@ -21,9 +21,9 @@ class DatabaseHandler(ctx: Context) : SQLiteOpenHelper(ctx, DATABASE_NAME, null,
 
         val DATABASE_TABEL = "DB_TABEL"
         val ROW_ID = "_id"
-        val ROW_NAMA = "Nama"
-        val ROW_NIM = "Nim"
-        val ROW_SEMESTER = "Semester"
+        val ROW_NAMA = "nama"
+        val ROW_NIM = "nim"
+        val ROW_SEMESTER = "semster"
 
         private val QUERY_CREATE = "CREATE TABLE IF NOT EXISTS $DATABASE_TABEL ($ROW_ID INTEGER PRIMARY KEY AUTOINCREMENT, $ROW_NAMA TEXT , $ROW_NIM TEXT , $ROW_SEMESTER TEXT)"
         private val QUERY_UPGRADE = "DROP TABLE IF EXISTS $DATABASE_TABEL"

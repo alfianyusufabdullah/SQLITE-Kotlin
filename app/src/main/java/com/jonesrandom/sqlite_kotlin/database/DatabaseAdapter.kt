@@ -1,6 +1,5 @@
 package com.jonesrandom.sqlite_kotlin.database
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -23,9 +22,9 @@ class DatabaseAdapter(ctx: Context) {
     fun insertData(modelMahasiswa: ModelMahasiswa): Long {
 
         val values = ContentValues()
-        values.put(DatabaseHandler.ROW_NAMA, modelMahasiswa.Nama)
-        values.put(DatabaseHandler.ROW_NIM, modelMahasiswa.Nim)
-        values.put(DatabaseHandler.ROW_SEMESTER, modelMahasiswa.Semester)
+        values.put(DatabaseHandler.ROW_NAMA, modelMahasiswa.nama)
+        values.put(DatabaseHandler.ROW_NIM, modelMahasiswa.nim)
+        values.put(DatabaseHandler.ROW_SEMESTER, modelMahasiswa.semster)
 
         val stat = database.insert(DatabaseHandler.DATABASE_TABEL, null, values)
         val mess: String?
@@ -43,9 +42,9 @@ class DatabaseAdapter(ctx: Context) {
 
     fun updateData(modelMahasiswa: ModelMahasiswa): Int {
         val values = ContentValues()
-        values.put(DatabaseHandler.ROW_NAMA, modelMahasiswa.Nama)
-        values.put(DatabaseHandler.ROW_NIM, modelMahasiswa.Nim)
-        values.put(DatabaseHandler.ROW_SEMESTER, modelMahasiswa.Semester)
+        values.put(DatabaseHandler.ROW_NAMA, modelMahasiswa.nama)
+        values.put(DatabaseHandler.ROW_NIM, modelMahasiswa.nim)
+        values.put(DatabaseHandler.ROW_SEMESTER, modelMahasiswa.semster)
 
         val stat = database.update(DatabaseHandler.DATABASE_TABEL, values, "${DatabaseHandler.ROW_ID} = ${modelMahasiswa.id}", null)
         val mess: String?
@@ -72,9 +71,9 @@ class DatabaseAdapter(ctx: Context) {
 
                     val mahasiswa = ModelMahasiswa()
                     mahasiswa.id = cur.getInt(cur.getColumnIndex(DatabaseHandler.ROW_ID))
-                    mahasiswa.Nama = cur.getString(cur.getColumnIndex(DatabaseHandler.ROW_NAMA))
-                    mahasiswa.Nim = cur.getInt(cur.getColumnIndex(DatabaseHandler.ROW_NIM))
-                    mahasiswa.Semester = cur.getString(cur.getColumnIndex(DatabaseHandler.ROW_SEMESTER))
+                    mahasiswa.nama = cur.getString(cur.getColumnIndex(DatabaseHandler.ROW_NAMA))
+                    mahasiswa.nim = cur.getInt(cur.getColumnIndex(DatabaseHandler.ROW_NIM))
+                    mahasiswa.semster = cur.getString(cur.getColumnIndex(DatabaseHandler.ROW_SEMESTER))
 
                     data.add(mahasiswa)
 
