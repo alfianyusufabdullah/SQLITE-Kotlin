@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.jonesrandom.sqlite_kotlin.adapter.DaftarAdapter
 import com.jonesrandom.sqlite_kotlin.adapter.OnItemClickListener
-import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
+import com.jonesrandom.sqlite_kotlin.database.DatabaseHelper
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 import kotlinx.android.synthetic.main.activity_daftar_mahasiswa.*
 
@@ -52,8 +52,8 @@ class DaftarMahasiswaActivity : AppCompatActivity(), OnItemClickListener, Detail
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar_mahasiswa)
 
-        val dbAdapter = DatabaseAdapter(this)
-        dataDaftarMahasiswa = dbAdapter.getAllData()
+        val dbHelper = DatabaseHelper(this)
+        dataDaftarMahasiswa = dbHelper.getAllData()
 
         adapterDaftarMahasiswa = DaftarAdapter(dataDaftarMahasiswa, this)
 

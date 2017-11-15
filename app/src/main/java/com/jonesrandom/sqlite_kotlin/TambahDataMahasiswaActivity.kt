@@ -8,7 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
+import com.jonesrandom.sqlite_kotlin.database.DatabaseHelper
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 import kotlinx.android.synthetic.main.activity_tambah_mahasiswa.*
 
@@ -18,7 +18,7 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah_mahasiswa)
 
-        val dbAdapter = DatabaseAdapter(this)
+        val dbHelper = DatabaseHelper(this)
 
         toolbar.title = "SQLite Kotlin"
 
@@ -55,7 +55,7 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
             data.nim = nim.toInt()
             data.semster = semester
 
-            val stat = dbAdapter.insertData(data)
+            val stat = dbHelper.insertData(data)
 
             if (stat > 0) {
                 spinnerSemester.setSelection(0)
@@ -64,6 +64,10 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
 
                 etNim.clearFocus()
                 etNama.clearFocus()
+
+                Toast.makeText(this, "Berhasil Menambah Data", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Gagal Menambah Data", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -73,9 +77,7 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
 
     }
 
-    private fun getSemester(): List<String> {
-        return listOf("SEMESTER", "SEMESTER 1", "SEMESTER 2", "SEMESTER 3", "SEMESTER 4", "SEMESTER 5", "SEMESTER 6", "SEMESTER 7")
-    }
+    private fun getSemester(): List<String> = listOf("SEMESTER", "SEMESTER 1", "SEMESTER 2", "SEMESTER 3", "SEMESTER 4", "SEMESTER 5", "SEMESTER 6", "SEMESTER 7")
 
     private class Watcher(textinput: TextInputLayout) : TextWatcher {
 

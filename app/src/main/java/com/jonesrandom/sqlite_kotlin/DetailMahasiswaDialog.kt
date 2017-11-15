@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
+import com.jonesrandom.sqlite_kotlin.database.DatabaseHelper
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 import kotlinx.android.synthetic.main.dialog_detail_mahasiswa.*
 
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.dialog_detail_mahasiswa.*
 class DetailMahasiswaDialog : BottomSheetDialogFragment() {
 
     private var dataMahasiswa = ModelMahasiswa()
-    lateinit private var dbAdapter: DatabaseAdapter
+    lateinit private var dbHelper: DatabaseHelper
 
     companion object {
         lateinit private var listeners: OnDialogItemClick
@@ -42,7 +42,7 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dbAdapter = context?.let { DatabaseAdapter(it) }!!
+        dbHelper = context?.let { DatabaseHelper(it) }!!
         val args = arguments
 
         if (args != null)
@@ -75,7 +75,7 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                     build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.nama.toUpperCase()}")
                     build?.setPositiveButton("HAPUS", { dialogInterface, i ->
 
-                        val stas = dbAdapter.deleteData(dataMahasiswa.id)
+                        val stas = dbHelper.deleteData(dataMahasiswa.id)
 
                         if (stas != 0) {
                             dialog.dismiss()

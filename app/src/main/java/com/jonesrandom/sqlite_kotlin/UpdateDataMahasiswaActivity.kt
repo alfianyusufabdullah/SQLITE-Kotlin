@@ -9,7 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
+import com.jonesrandom.sqlite_kotlin.database.DatabaseHelper
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 import kotlinx.android.synthetic.main.activity_update_mahasiswa.*
 
@@ -21,7 +21,7 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_mahasiswa)
 
-        val dbAdapter = DatabaseAdapter(this)
+        val dbHelper = DatabaseHelper(this)
         bindView()
 
         etNamaEdit.addTextChangedListener(Watcher(inNamaEdit))
@@ -53,7 +53,7 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
             dataMahasiswa.nim = nim.toInt()
             dataMahasiswa.semster = semester
 
-            val stat = dbAdapter.updateData(dataMahasiswa)
+            val stat = dbHelper.updateData(dataMahasiswa)
 
             if (stat > 0) {
                 val bind = Bundle()
