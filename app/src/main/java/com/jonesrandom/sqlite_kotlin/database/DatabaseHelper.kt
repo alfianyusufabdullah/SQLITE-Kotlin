@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.widget.Toast
+import android.util.Log
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 
 /**
@@ -14,9 +14,7 @@ import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
  *
  */
 class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION) {
-
-    private val context: Context = ctx
-    private val database : SQLiteDatabase = writableDatabase
+    private val database: SQLiteDatabase = writableDatabase
 
     companion object {
         private val DATABASE_NAME = "DB_NAME"
@@ -35,12 +33,12 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DATABASE_NAME, null, 
 
     override fun onCreate(p0: SQLiteDatabase?) {
         p0?.execSQL(QUERY_CREATE)
-        Toast.makeText(context , "DATABASE CREATED" , Toast.LENGTH_SHORT).show()
+        Log.i("DATABASE", "DATABASE CREATED")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         p0?.execSQL(QUERY_UPGRADE)
-        Toast.makeText(context , "DATABASE UPGRADED" , Toast.LENGTH_SHORT).show()
+        Log.i("DATABASE", "DATABASE UPDATED")
     }
 
     fun insertData(modelMahasiswa: ModelMahasiswa): Long {
@@ -87,19 +85,6 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DATABASE_NAME, null, 
         return data
     }
 
-    fun deleteData(id: Int): Int {
-        val stat = database.delete(DatabaseHelper.DATABASE_TABEL, "${DatabaseHelper.ROW_ID} = $id", null)
-        val mess: String?
-        mess = if (stat > 0) {
-            "Berhasil Menghapus dataDaftarMahasiswa"
-        } else {
-            "Gagal Menghapus Data"
-        }
-
-        Toast.makeText(context, mess, Toast.LENGTH_SHORT).show()
-
-        return stat
-    }
-
+    fun deleteData(id: Int): Int = database.delete(DatabaseHelper.DATABASE_TABEL, "${DatabaseHelper.ROW_ID} = $id", null)
 
 }
