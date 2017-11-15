@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
 import kotlinx.android.synthetic.main.dialog_detail.*
@@ -20,8 +19,8 @@ import kotlinx.android.synthetic.main.dialog_detail.*
 
 class DialogDetail : BottomSheetDialogFragment() {
 
-    var data = ModelMahasiswa()
-    lateinit var dbAdapter: DatabaseAdapter
+    private var dataMahasiswa = ModelMahasiswa()
+    lateinit private var dbAdapter: DatabaseAdapter
 
     companion object {
         lateinit private var listeners: OnDialogItemClick
@@ -47,7 +46,7 @@ class DialogDetail : BottomSheetDialogFragment() {
         val args = arguments
 
         if (args != null)
-            data = args.getParcelable("DATA")
+            dataMahasiswa = args.getParcelable("DATA")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,9 +56,9 @@ class DialogDetail : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dialogNama.text = data.Nama.toUpperCase()
-        dialogNim.text = data.Nim.toString()
-        dialogSemester.text = data.Semester
+        dialogNama.text = dataMahasiswa.Nama.toUpperCase()
+        dialogNim.text = dataMahasiswa.Nim.toString()
+        dialogSemester.text = dataMahasiswa.Semester
 
         toolbarDialog.inflateMenu(R.menu.dialog_menu)
         toolbarDialog.setOnMenuItemClickListener {
@@ -67,20 +66,20 @@ class DialogDetail : BottomSheetDialogFragment() {
             when (it.itemId) {
 
                 R.id.dialogEdit -> {
-                    listeners.dialogEditCallback(data)
+                    listeners.dialogEditCallback(dataMahasiswa)
                     dialog.dismiss()
                 }
                 R.id.dialogHapus -> {
                     val build = context?.let { it1 -> AlertDialog.Builder(it1) }
                     build?.setTitle("Hapus Data")
-                    build?.setMessage("Apakah Kamu Ingin Menghapus Data ${data.Nama.toUpperCase()}")
+                    build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.Nama.toUpperCase()}")
                     build?.setPositiveButton("HAPUS", { dialogInterface, i ->
 
-                        val stas = dbAdapter.deleteData(data.id)
+                        val stas = dbAdapter.deleteData(dataMahasiswa.id)
 
                         if (stas != 0) {
                             dialog.dismiss()
-                            listeners.dialogDeleteCallback(data)
+                            listeners.dialogDeleteCallback(dataMahasiswa)
                         }
 
                     })
