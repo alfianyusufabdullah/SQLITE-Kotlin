@@ -24,7 +24,7 @@ class DaftarAdapter(data: MutableList<ModelMahasiswa>, listener: OnItemClickList
     override fun getItemCount(): Int = datas.size
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): DaftarHolder {
-        val view = LayoutInflater.from(parent?.context).inflate(R.layout.row_daftar, parent, false)
+        val view = LayoutInflater.from(parent?.context).inflate(R.layout.row_daftar_mahasiswa, parent, false)
         return DaftarHolder(view)
     }
 }
