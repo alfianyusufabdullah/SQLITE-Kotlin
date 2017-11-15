@@ -11,9 +11,9 @@ import com.jonesrandom.sqlite_kotlin.adapter.DaftarAdapter
 import com.jonesrandom.sqlite_kotlin.adapter.OnItemClickListener
 import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
-import kotlinx.android.synthetic.main.activity_daftar.*
+import kotlinx.android.synthetic.main.activity_daftar_mahasiswa.*
 
-class DaftarMahasiswa : AppCompatActivity(), OnItemClickListener, DialogDetail.OnDialogItemClick {
+class DaftarMahasiswaActivity : AppCompatActivity(), OnItemClickListener, DetailMahasiswaDialog.OnDialogItemClick {
 
     private var dataDaftarMahasiswa: MutableList<ModelMahasiswa> = ArrayList()
     private var positionStats = 0
@@ -36,13 +36,13 @@ class DaftarMahasiswa : AppCompatActivity(), OnItemClickListener, DialogDetail.O
         val bind = Bundle()
         bind.putParcelable("DATA", data)
 
-        val edit = Intent(this, EditMahasiswa::class.java)
+        val edit = Intent(this, UpdateDataMahasiswaActivity::class.java)
         edit.putExtras(bind)
         startActivityForResult(edit, 1)
     }
 
     override fun onClick(data: ModelMahasiswa, position: Int) {
-        DialogDetail.newInstance(data, this).show(supportFragmentManager, "DETAIL")
+        DetailMahasiswaDialog.newInstance(data, this).show(supportFragmentManager, "DETAIL")
         positionStats = position
 
         Toast.makeText(this , "Position $positionStats Clicked!" , Toast.LENGTH_SHORT).show()
@@ -50,7 +50,7 @@ class DaftarMahasiswa : AppCompatActivity(), OnItemClickListener, DialogDetail.O
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daftar)
+        setContentView(R.layout.activity_daftar_mahasiswa)
 
         val dbAdapter = DatabaseAdapter(this)
         dataDaftarMahasiswa = dbAdapter.getAllData()

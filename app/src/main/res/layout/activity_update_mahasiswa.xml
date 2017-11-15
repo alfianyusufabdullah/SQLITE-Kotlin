@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.jonesrandom.sqlite_kotlin.EditMahasiswa">
+    tools:context="com.jonesrandom.sqlite_kotlin.UpdateDataMahasiswaActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarEdit"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="edit data" />
+                android:text="edit dataMahasiswa" />
 
 
         </LinearLayout>

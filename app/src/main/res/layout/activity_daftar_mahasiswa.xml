@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.jonesrandom.sqlite_kotlin.DaftarMahasiswa">
+    tools:context="com.jonesrandom.sqlite_kotlin.DaftarMahasiswaActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbars"

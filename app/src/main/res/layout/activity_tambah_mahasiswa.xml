@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.jonesrandom.sqlite_kotlin.MainActivity">
+    tools:context="com.jonesrandom.sqlite_kotlin.TambahDataMahasiswaActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="tambah data" />
+                android:text="tambah dataMahasiswa" />
 
             <Button
                 android:id="@+id/btnLihatData"

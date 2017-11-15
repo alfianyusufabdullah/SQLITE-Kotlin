@@ -10,13 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_tambah_mahasiswa.*
 
-class MainActivity : AppCompatActivity() {
+class TambahDataMahasiswaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_tambah_mahasiswa)
 
         val dbAdapter = DatabaseAdapter(this)
 
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         btnLihatData.setOnClickListener {
-            startActivity(Intent(this, DaftarMahasiswa::class.java))
+            startActivity(Intent(this, DaftarMahasiswaActivity::class.java))
         }
 
     }

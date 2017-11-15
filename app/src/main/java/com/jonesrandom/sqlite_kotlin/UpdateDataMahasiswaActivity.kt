@@ -11,15 +11,15 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
-import kotlinx.android.synthetic.main.activity_edit.*
+import kotlinx.android.synthetic.main.activity_update_mahasiswa.*
 
-class EditMahasiswa : AppCompatActivity() {
+class UpdateDataMahasiswaActivity : AppCompatActivity() {
 
     var dataMahasiswa = ModelMahasiswa()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
+        setContentView(R.layout.activity_update_mahasiswa)
 
         val dbAdapter = DatabaseAdapter(this)
         bindView()

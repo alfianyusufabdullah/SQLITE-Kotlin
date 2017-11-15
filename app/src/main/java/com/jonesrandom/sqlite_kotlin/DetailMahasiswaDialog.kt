@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.jonesrandom.sqlite_kotlin.database.DatabaseAdapter
 import com.jonesrandom.sqlite_kotlin.model.ModelMahasiswa
-import kotlinx.android.synthetic.main.dialog_detail.*
+import kotlinx.android.synthetic.main.dialog_detail_mahasiswa.*
 
 /**
  * Created by jonesrandom on 11/14/17.
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.dialog_detail.*
  *
  */
 
-class DialogDetail : BottomSheetDialogFragment() {
+class DetailMahasiswaDialog : BottomSheetDialogFragment() {
 
     private var dataMahasiswa = ModelMahasiswa()
     lateinit private var dbAdapter: DatabaseAdapter
@@ -25,10 +25,10 @@ class DialogDetail : BottomSheetDialogFragment() {
     companion object {
         lateinit private var listeners: OnDialogItemClick
 
-        fun newInstance(data: ModelMahasiswa, listener: OnDialogItemClick): DialogDetail {
+        fun newInstance(data: ModelMahasiswa, listener: OnDialogItemClick): DetailMahasiswaDialog {
 
             listeners = listener
-            val detail = DialogDetail()
+            val detail = DetailMahasiswaDialog()
 
             val bind = Bundle()
             bind.putParcelable("DATA", data)
@@ -50,7 +50,7 @@ class DialogDetail : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_detail, container, false)
+        return inflater.inflate(R.layout.dialog_detail_mahasiswa, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
