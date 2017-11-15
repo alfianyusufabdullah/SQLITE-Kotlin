@@ -15,9 +15,9 @@ class DaftarHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(data: ModelMahasiswa, listener: OnItemClickListener , position : Int) = with(itemView) {
 
-        rowAv.text = data.Nama.substring(0, 1).capitalize()
-        rowNama.text = data.Nama
-        rowNim.text = data.Nim.toString()
+        rowAv.text = data.nama.substring(0, 1).capitalize()
+        rowNama.text = data.nama
+        rowNim.text = data.nim.toString()
 
         setOnClickListener { listener.onClick(data , position) }
 
