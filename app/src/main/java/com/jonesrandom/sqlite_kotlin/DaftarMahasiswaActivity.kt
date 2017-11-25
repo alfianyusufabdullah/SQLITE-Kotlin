@@ -44,16 +44,13 @@ class DaftarMahasiswaActivity : AppCompatActivity(), OnItemClickListener, Detail
     override fun onClick(data: ModelMahasiswa, position: Int) {
         DetailMahasiswaDialog.newInstance(data, this).show(supportFragmentManager, "DETAIL")
         positionStats = position
-
-        Toast.makeText(this , "Position $positionStats Clicked!" , Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftar_mahasiswa)
 
-        val dbHelper = DatabaseHelper(this)
-        dataDaftarMahasiswa = dbHelper.getAllData()
+        dataDaftarMahasiswa = DatabaseHelper.getAllData()
 
         adapterDaftarMahasiswa = DaftarAdapter(dataDaftarMahasiswa, this)
 
