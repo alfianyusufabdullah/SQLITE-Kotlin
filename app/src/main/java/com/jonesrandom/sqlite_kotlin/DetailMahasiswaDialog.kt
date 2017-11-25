@@ -74,7 +74,7 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                     val build = context?.let { it1 -> AlertDialog.Builder(it1) }
                     build?.setTitle("Hapus Data")
                     build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.nama.toUpperCase()}")
-                    build?.setPositiveButton("HAPUS", { dialogInterface, i ->
+                    build?.setPositiveButton("HAPUS", { _, _ ->
 
                         val stas = dbHelper.deleteData(dataMahasiswa.id)
 
@@ -82,9 +82,9 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                             dialog.dismiss()
                             listeners.dialogDeleteCallback(dataMahasiswa)
 
-                            Toast.makeText(activity , "Berhasil Menghapus Data" , Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(activity , "Gagal Menghapus Data" , Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Gagal Menghapus Data", Toast.LENGTH_SHORT).show()
                         }
 
                     })
