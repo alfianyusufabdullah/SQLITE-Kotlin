@@ -21,7 +21,6 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_mahasiswa)
 
-        val dbHelper = DatabaseHelper(this)
         bindView()
 
         etNamaEdit.addTextChangedListener(Watcher(inNamaEdit))
@@ -45,7 +44,7 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
             }
 
             if (id < 1) {
-                Toast.makeText(this, "Pilih semster", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Pilih semester", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -53,7 +52,7 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
             dataMahasiswa.nim = nim.toInt()
             dataMahasiswa.semster = semester
 
-            val stat = dbHelper.updateData(dataMahasiswa)
+            val stat = DatabaseHelper.updateData(dataMahasiswa)
 
             if (stat > 0) {
                 val bind = Bundle()
@@ -63,9 +62,12 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
                 intent.putExtras(bind)
 
                 setResult(Activity.RESULT_OK, intent)
+
+                Toast.makeText(this, "Berhasil Mengupdate Data", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Gagal Mengudate Data", Toast.LENGTH_SHORT).show()
             }
         }
-
         toolbarEdit.title = "Update Data Mahasiswa"
     }
 
@@ -82,9 +84,7 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
 
     }
 
-    private fun getSemester(): List<String> {
-        return listOf("SEMESTER", "SEMESTER 1", "SEMESTER 2", "SEMESTER 3", "SEMESTER 4", "SEMESTER 5", "SEMESTER 6", "SEMESTER 7")
-    }
+    private fun getSemester(): List<String> = listOf("SEMESTER", "SEMESTER 1", "SEMESTER 2", "SEMESTER 3", "SEMESTER 4", "SEMESTER 5", "SEMESTER 6", "SEMESTER 7")
 
     private class Watcher(textinput: TextInputLayout) : TextWatcher {
 

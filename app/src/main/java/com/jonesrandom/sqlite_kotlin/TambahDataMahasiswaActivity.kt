@@ -18,8 +18,6 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah_mahasiswa)
 
-        val dbHelper = DatabaseHelper(this)
-
         toolbar.title = "SQLite Kotlin"
 
         etNama.addTextChangedListener(Watcher(inNama))
@@ -55,7 +53,7 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
             data.nim = nim.toInt()
             data.semster = semester
 
-            val stat = dbHelper.insertData(data)
+            val stat = DatabaseHelper.insertData(data)
 
             if (stat > 0) {
                 spinnerSemester.setSelection(0)

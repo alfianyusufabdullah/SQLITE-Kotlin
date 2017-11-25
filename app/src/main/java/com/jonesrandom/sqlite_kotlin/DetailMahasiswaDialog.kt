@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.dialog_detail_mahasiswa.*
 class DetailMahasiswaDialog : BottomSheetDialogFragment() {
 
     private var dataMahasiswa = ModelMahasiswa()
-    lateinit private var dbHelper: DatabaseHelper
 
     companion object {
         lateinit private var listeners: OnDialogItemClick
@@ -42,8 +41,6 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        dbHelper = context?.let { DatabaseHelper(it) }!!
         val args = arguments
 
         if (args != null)
@@ -74,17 +71,17 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                     val build = context?.let { it1 -> AlertDialog.Builder(it1) }
                     build?.setTitle("Hapus Data")
                     build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.nama.toUpperCase()}")
-                    build?.setPositiveButton("HAPUS", { dialogInterface, i ->
+                    build?.setPositiveButton("HAPUS", { _, _ ->
 
-                        val stas = dbHelper.deleteData(dataMahasiswa.id)
+                        val stas =  DatabaseHelper.deleteData(dataMahasiswa.id)
 
                         if (stas != 0) {
                             dialog.dismiss()
                             listeners.dialogDeleteCallback(dataMahasiswa)
 
-                            Toast.makeText(activity , "Berhasil Menghapus Data" , Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(activity , "Gagal Menghapus Data" , Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Gagal Menghapus Data", Toast.LENGTH_SHORT).show()
                         }
 
                     })
@@ -92,10 +89,8 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                     build?.create()?.show()
                 }
             }
-
             true
         }
-
     }
 
     interface OnDialogItemClick {
