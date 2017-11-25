@@ -82,9 +82,7 @@ class UpdateDataMahasiswaActivity : AppCompatActivity() {
 
     }
 
-    private fun getSemester(): List<String> {
-        return listOf("SEMESTER", "SEMESTER 1", "SEMESTER 2", "SEMESTER 3", "SEMESTER 4", "SEMESTER 5", "SEMESTER 6", "SEMESTER 7")
-    }
+    private fun getSemester(): List<String> = listOf("SEMESTER", "SEMESTER 1", "SEMESTER 2", "SEMESTER 3", "SEMESTER 4", "SEMESTER 5", "SEMESTER 6", "SEMESTER 7")
 
     private class Watcher(textinput: TextInputLayout) : TextWatcher {
 
