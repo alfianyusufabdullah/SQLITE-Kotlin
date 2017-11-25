@@ -61,6 +61,9 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DatabaseConstan.DATAB
             return data
         }
 
+        fun dd(){
+
+        }
         fun deleteData(id: Int): Int = database.delete(DatabaseConstan.DATABASE_TABEL, "${DatabaseConstan.ROW_ID} = $id", null)
     }
 
