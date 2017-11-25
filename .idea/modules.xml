@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SQLITEKotlin.iml" filepath="$PROJECT_DIR$/SQLITEKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SQLITE-Kotlin.iml" filepath="$PROJECT_DIR$/SQLITE-Kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
