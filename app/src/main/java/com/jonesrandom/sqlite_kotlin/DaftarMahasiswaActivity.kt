@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.Toast
 import com.jonesrandom.sqlite_kotlin.adapter.DaftarAdapter
 import com.jonesrandom.sqlite_kotlin.adapter.OnItemClickListener
 import com.jonesrandom.sqlite_kotlin.database.DatabaseHelper
@@ -78,5 +77,10 @@ class DaftarMahasiswaActivity : AppCompatActivity(), OnItemClickListener, Detail
                 adapterDaftarMahasiswa.notifyDataSetChanged()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        DatabaseHelper.closeDatabase()
     }
 }
