@@ -73,7 +73,7 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
                     build?.setMessage("Apakah Kamu Ingin Menghapus Data ${dataMahasiswa.nama.toUpperCase()}")
                     build?.setPositiveButton("HAPUS", { _, _ ->
 
-                        val stas =  DatabaseHelper.deleteData(dataMahasiswa.id)
+                        val stas = DatabaseHelper.deleteData(dataMahasiswa.id)
 
                         if (stas != 0) {
                             dialog.dismiss()
@@ -96,5 +96,10 @@ class DetailMahasiswaDialog : BottomSheetDialogFragment() {
     interface OnDialogItemClick {
         fun dialogEditCallback(data: ModelMahasiswa)
         fun dialogDeleteCallback(data: ModelMahasiswa)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        DatabaseHelper.closeDatabase()
     }
 }

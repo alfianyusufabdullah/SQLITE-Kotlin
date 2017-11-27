@@ -91,4 +91,9 @@ class TambahDataMahasiswaActivity : AppCompatActivity() {
             input.isErrorEnabled = false
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        DatabaseHelper.closeDatabase()
+    }
 }
