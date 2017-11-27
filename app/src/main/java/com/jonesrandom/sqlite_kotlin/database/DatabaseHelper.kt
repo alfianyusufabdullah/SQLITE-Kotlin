@@ -18,14 +18,31 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DatabaseConstan.DATAB
     companion object {
         private lateinit var INSTANCE: DatabaseHelper
         private lateinit var database: SQLiteDatabase
+        private var databaseOpen: Boolean = false
+
+        fun closeDatabase() {
+            if (database.isOpen && databaseOpen) {
+                database.close()
+                databaseOpen = false
+
+                Log.i("Database" , "Database close")
+            }
+        }
 
         fun initDatabaseInstance(ctx: Context): DatabaseHelper {
             INSTANCE = DatabaseHelper(ctx)
-            database = INSTANCE.writableDatabase
             return INSTANCE
         }
 
         fun insertData(modelMahasiswa: ModelMahasiswa): Long {
+
+            if (!databaseOpen) {
+                database = INSTANCE.writableDatabase
+                databaseOpen = true
+
+                Log.i("Database" , "Database Open")
+            }
+
             val values = ContentValues()
             values.put(DatabaseConstan.ROW_NAMA, modelMahasiswa.nama)
             values.put(DatabaseConstan.ROW_NIM, modelMahasiswa.nim)
@@ -34,6 +51,13 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DatabaseConstan.DATAB
         }
 
         fun updateData(modelMahasiswa: ModelMahasiswa): Int {
+            if (!databaseOpen) {
+                database = INSTANCE.writableDatabase
+                databaseOpen = true
+
+                Log.i("Database" , "Database Open")
+            }
+
             val values = ContentValues()
             values.put(DatabaseConstan.ROW_NAMA, modelMahasiswa.nama)
             values.put(DatabaseConstan.ROW_NIM, modelMahasiswa.nim)
@@ -42,6 +66,13 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DatabaseConstan.DATAB
         }
 
         fun getAllData(): MutableList<ModelMahasiswa> {
+            if (!databaseOpen) {
+                database = INSTANCE.writableDatabase
+                databaseOpen = true
+
+                Log.i("Database" , "Database Open")
+            }
+
             val data: MutableList<ModelMahasiswa> = ArrayList()
             val cursor = database.rawQuery("SELECT * FROM ${DatabaseConstan.DATABASE_TABEL}", null)
             cursor.use { cur ->
@@ -61,10 +92,15 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DatabaseConstan.DATAB
             return data
         }
 
-        fun dd(){
+        fun deleteData(id: Int): Int {
+            if (!databaseOpen) {
+                database = INSTANCE.writableDatabase
+                databaseOpen = true
 
+                Log.i("Database" , "Database Open")
+            }
+            return database.delete(DatabaseConstan.DATABASE_TABEL, "${DatabaseConstan.ROW_ID} = $id", null)
         }
-        fun deleteData(id: Int): Int = database.delete(DatabaseConstan.DATABASE_TABEL, "${DatabaseConstan.ROW_ID} = $id", null)
     }
 
     override fun onCreate(p0: SQLiteDatabase?) {
@@ -76,6 +112,5 @@ class DatabaseHelper(ctx: Context) : SQLiteOpenHelper(ctx, DatabaseConstan.DATAB
         p0?.execSQL(DatabaseConstan.QUERY_UPGRADE)
         Log.i("DATABASE", "DATABASE UPDATED")
     }
-
 
 }
